@@ -10,3 +10,11 @@ export const getPopularMovies = (params = {}) => {
     return fetch(apiUrl)
         .then(res => res.json());
 }
+
+export const getSearchResults = (params = {}) => {
+    let apiUrl = new URL(`${baseUrl}search/movie`);
+    params.api_key = API_KEY;
+    Object.keys(params).forEach(key => apiUrl.searchParams.append(key, params[key]))
+    return fetch(apiUrl)
+        .then(res => res.json());
+}

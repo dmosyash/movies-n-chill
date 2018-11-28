@@ -36,7 +36,8 @@ class Home extends Component {
 
     render() {
         const styleContainer = {
-            paddingTop: '50px'
+            paddingTop: '50px',
+            backgroundColor: '#dfdfdf'
         }
 
         const container = (<div style={styleContainer}>
