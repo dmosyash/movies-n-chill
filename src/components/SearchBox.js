@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './searchBox.css';
-import { getSearchResults } from './../services/apiService';
+import { Link, BrowserRouter } from 'react-router-dom';
+import './SearchBox.css';
+import { getSearchResults } from '../services/apiService';
 
 /**
  * @class SearchBox
@@ -23,7 +24,9 @@ class SearchBox extends Component {
 
     renderResults = () => {
         let resultsToShow = this.state.results.slice(0, 7);
-        return resultsToShow.map(result => <li key={result.id}>{result.title}</li>);
+        return resultsToShow.map(result => {
+            return <li onClick={() => this.props.goToMovie(result.id)} key={result.id}>{result.title}</li>
+        });
     }
 
     handleSearchChange = (event) => {
@@ -45,11 +48,13 @@ class SearchBox extends Component {
 
     render() {
         const resultBox = (
-            <div className="result-section">
-                <ul>
-                    {this.renderResults()}
-                </ul>
-            </div>
+            <BrowserRouter>
+                <div className="result-section">
+                    <ul>
+                        {this.renderResults()}
+                    </ul>
+                </div>
+            </BrowserRouter>
         );
 
         const box = (

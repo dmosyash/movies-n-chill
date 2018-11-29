@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import { getPopularMovies } from './../services/apiService';
-import MovieCell from './../components/movieCell';
+import MovieCell from '../components/MovieCell';
 
 /**
  * @class Home
@@ -30,11 +30,16 @@ class Home extends Component {
 
     renderMovies = () => {
         return this.state.moviesData.map(movie => {
-            return <MovieCell movie={movie} />
+            return <MovieCell key={movie.id} movie={movie} onClick={this.goToMovie}/>
         })
     }
 
+    goToMovie = id => {
+        this.props.history.push(`movie/${id}`);
+    }
+
     render() {
+        console.log(this.props);
         const styleContainer = {
             paddingTop: '50px',
             backgroundColor: '#dfdfdf'
