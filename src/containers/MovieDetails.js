@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { getMovieDetails, getMovieCast } from '../services/apiService';
-import MovieDetailView from './../components/MovieDetailView';
-import MovieCastView from './../components/MovieCastView';
+import { getMovieDetails, getMovieCast, getSimilarMovies } from '../services/apiService';
+import MovieDetailView from '../components/movie-details/MovieDetailView';
+import MovieCastView from '../components/movie-details/MovieCastView';
+import SimilarMovies from '../components/movie-details/SimilarMovies';
 
 /**
  * @class MovieDetails
@@ -18,71 +19,69 @@ class MovieDetails extends Component {
             loading: true,
             movieData: {},
             movieCast: [],
-            movieData1: {
-                "production_companies": [{
-                    "id": 5,
-                    "logo_path": "/71BqEFAF4V3qjjMPCpLuyJFB9A.png",
-                    "name": "Columbia Pictures",
-                    "origin_country": "US"
-                },
-                {
-                    "id": 7505,
-                    "logo_path": "/837VMM4wOkODc1idNxGT0KQJlej.png",
-                    "name": "Marvel Entertainment",
-                    "origin_country": "US"
-                },
-                {
-                    "id": 34,
-                    "logo_path": "/GagSvqWlyPdkFHMfQ3pNq6ix9P.png",
-                    "name": "Sony Pictures",
-                    "origin_country": "US"
-                },
-                {
-                    "id": 31828,
-                    "logo_path": null,
-                    "name": "Avi Arad Productions",
-                    "origin_country": "US"
-                }
-                ],
-                "production_countries": [{
-                    "iso_3166_1": "US",
-                    "name": "United States of America"
-                }]
-            }
+            similarMovies: []
         };
     }
 
     componentDidMount() {
-        getMovieDetails(this.props.match.params.id)
+        this.callApis(this.props.match.params.id)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.match.params.id !== this.props.match.params.id) {
+            this.callApis(nextProps.match.params.id);
+        }
+    }
+
+    callApis = id => {
+        this.setState({ loading: true });
+        getMovieDetails(id)
             .then(response => {
                 this.setState({
                     loading: false,
                     movieData: response
                 });
             });
-        getMovieCast(this.props.match.params.id)
+
+        getMovieCast(id)
             .then(response => {
-                this.setState({ movieCast: response.cast });
+                this.setState({
+                    movieCast: response.cast
+                });
+            });
+
+        getSimilarMovies(id)
+            .then(response => {
+                this.setState({
+                    similarMovies: response.results.slice(0, 10)
+                });
             });
     }
 
+    goToCast = id => this.props.history.push(`/cast/${id}`);
+
+    goToMovie = id => this.props.history.push(`/movie/${id}`);
+
     render() {
-        const { movieData, movieCast } = this.state;
+        const { movieData, movieCast, similarMovies } = this.state;
         const styleContainer = {
             padding: '50px 80px',
             backgroundColor: '#dfdfdf'
         }
 
         const container = (
-            <div style={styleContainer}>
+            <div key={movieData.id} style={styleContainer}>
                 {
                     this.state.loading ? <h2> Loading... </h2> :
                         (
                             <React.Fragment>
                                 <MovieDetailView movieData={movieData} />
                                 <br />
+                                <h4>Similar Movies</h4>
+                                <SimilarMovies onClick={this.goToMovie} list={similarMovies} />
+                                <br />
                                 <h4>Cast and Crew</h4>
-                                <MovieCastView cast={movieCast} />
+                                <MovieCastView onClick={this.goToCast} cast={movieCast} />
                             </React.Fragment>
                         )
                 }

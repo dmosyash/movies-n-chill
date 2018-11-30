@@ -10,3 +10,7 @@
 .value {
     font-size: 17px;
 }
+
+tr {
+    cursor: pointer;
+}

@@ -2,8 +2,8 @@ import React from 'react';
 import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
-import { imageBaseUrl } from '../services/apiService';
-import './MovieDetails.css';
+import { imageBaseUrl } from './../../services/apiService';
+import './../Details.css';
 
 const renderMultipleAnswers = (data = []) => {
     return data.map((item, i) => {
@@ -18,7 +18,7 @@ const MovieDetailView = ({ movieData }) => {
         <Grid>
             <Row>
                 <Col xs={12} md={3}>
-                    <img width={240} height={364} src={`${imageBaseUrl}w185/${movieData.poster_path}`} alt="thumbnail" />
+                    <img width={240} height={364} src={`${imageBaseUrl}w500/${movieData.poster_path}`} alt="thumbnail" />
                 </Col>
                 <Col xs={12} md={9}>
                     <h2>{movieData.title}</h2>
@@ -45,18 +45,18 @@ const MovieDetailView = ({ movieData }) => {
                                     <span style={{ fontSize: '10px' }}>({movieData.vote_count})</span>
                         </Col>
                     </Row>
-                    <Row>
+                    {movieData.budget ? (<Row>
                         <Col xs={12} md={7}>
                             <span className="key">Budget:</span>
                             <span className="value">${convertInMillions(movieData.budget)}</span>
                         </Col>
-                    </Row>
-                    <Row>
+                    </Row>) : null}
+                    {movieData.revenue ? (<Row>
                         <Col xs={12} md={7}>
                             <span className="key">Box Office:</span>
                             <span className="value">${convertInMillions(movieData.revenue)}</span>
                         </Col>
-                    </Row>
+                    </Row>) : null}
                     <Row>
                         <Col xs={12} md={7}>
                             <span className="key">Language:</span>

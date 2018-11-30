@@ -1,10 +1,10 @@
 import React from 'react';
 import Table from 'react-bootstrap/lib/Table';
-import { imageBaseUrl } from '../services/apiService';
+import { imageBaseUrl } from '../../services/apiService';
 
-const renderCast = cast => {
+const renderCast = (cast, onClick) => {
     return cast.map(v => (
-        <tr key={v.id}>
+        <tr onClick={() => onClick(v.id)} key={v.id}>
             <td>{v.profile_path ? <img width="50" height="75" src={`${imageBaseUrl}w185${v.profile_path}`} alt="thumbnail" /> : '-NA-'}</td>
             <td>{v.name}</td>
             <td>{v.character}</td>
@@ -12,7 +12,7 @@ const renderCast = cast => {
     ));
 }
 
-const MovieCastView = ({ cast }) => (
+const MovieCastView = ({ cast, onClick }) => (
     <Table striped bordered condensed hover>
         <thead>
             <tr>
@@ -21,7 +21,7 @@ const MovieCastView = ({ cast }) => (
                 <th>Character</th>
             </tr>
         </thead>
-        <tbody>{renderCast(cast)}</tbody>
+        <tbody>{renderCast(cast, onClick)}</tbody>
     </Table>
 );
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, BrowserRouter } from 'react-router-dom';
 import './SearchBox.css';
-import { getSearchResults } from '../services/apiService';
+import { getSearchResults } from '../../services/apiService';
 
 /**
  * @class SearchBox
