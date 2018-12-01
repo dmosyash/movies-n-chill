@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
 import { getMovieDetails, getMovieCast, getSimilarMovies } from '../services/apiService';
 import MovieDetailView from '../components/movie-details/MovieDetailView';
 import MovieCastView from '../components/movie-details/MovieCastView';
