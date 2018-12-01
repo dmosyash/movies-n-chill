@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDom from 'react-dom';
 import { getMovieDetails, getMovieCast, getSimilarMovies } from '../services/apiService';
 import MovieDetailView from '../components/movie-details/MovieDetailView';
 import MovieCastView from '../components/movie-details/MovieCastView';
@@ -6,11 +7,12 @@ import SimilarMovies from '../components/movie-details/SimilarMovies';
 
 /**
  * @class MovieDetails
- * @description MovieDetails is a Container which get popular movies from API called in componentDidMount
- * and changing state so movies will get render.
- * State of this Container is Movie List
- * Grid is used to show the movie list 
+ * @description MovieDetails is a Container which show detail of the movie from API
+ * called in componentDidMount and changing state so details get render.
+ * It also call APIs for similar movies and its cast n crew.
+ * State of this Container is Movie Data, cast of movie and similar movies. 
  */
+
 class MovieDetails extends Component {
 
     constructor(props) {
@@ -25,6 +27,7 @@ class MovieDetails extends Component {
 
     componentDidMount() {
         this.callApis(this.props.match.params.id)
+        window.scrollTo(0, 0);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -64,13 +67,9 @@ class MovieDetails extends Component {
 
     render() {
         const { movieData, movieCast, similarMovies } = this.state;
-        const styleContainer = {
-            padding: '50px 80px',
-            backgroundColor: '#dfdfdf'
-        }
 
         const container = (
-            <div key={movieData.id} style={styleContainer}>
+            <div key={movieData.id}>
                 {
                     this.state.loading ? <h2> Loading... </h2> :
                         (

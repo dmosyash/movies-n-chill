@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link, BrowserRouter } from 'react-router-dom';
 import './SearchBox.css';
 import { getSearchResults } from '../../services/apiService';
 
@@ -7,11 +6,12 @@ import { getSearchResults } from '../../services/apiService';
  * @class SearchBox
  * @description SearchBox is a Component which take text as input to search movies 
  * by calling search API.
- * It only shows top 7 movies from search.
+ * It shows top 7 movies from search.
  * State of this Component will contain search text which is input and 
  * results which is response of the search API
  * UL is used to show the movie list 
  */
+
 class SearchBox extends Component {
     constructor(props) {
         super(props);
@@ -22,15 +22,27 @@ class SearchBox extends Component {
         this.timer = null;
     }
 
+    goToMovie = id => {
+        this.setState({ results: [] });
+        this.props.goToMovie(id)
+    }
+
     renderResults = () => {
+        if (!this.state.results || !this.state.results.length) return;
         let resultsToShow = this.state.results.slice(0, 7);
         return resultsToShow.map(result => {
-            return <li onClick={() => this.props.goToMovie(result.id)} key={result.id}>{result.title}</li>
+            return <li onClick={() => this.goToMovie(result.id)} key={result.id}>{result.title}</li>
         });
     }
 
     handleSearchChange = (event) => {
-        this.setState({ searchText: event.target.value });
+        if (event.target.value.length) {
+            this.setState({ searchText: event.target.value });
+        } else {
+            this.setState({ searchText: event.target.value, results: [] });
+            return;
+        }
+
 
         //calling API after 200ms, to avoiding unnecessary API calls
         if (this.timer) {
@@ -48,13 +60,11 @@ class SearchBox extends Component {
 
     render() {
         const resultBox = (
-            <BrowserRouter>
                 <div className="result-section">
                     <ul>
                         {this.renderResults()}
                     </ul>
                 </div>
-            </BrowserRouter>
         );
 
         const box = (

@@ -4,8 +4,6 @@
     vertical-align: middle;
     white-space: nowrap;
     position: relative;
-    /* border: #bfd9f3 1px solid;
-    border-radius: 25px; */
 }
 
 .search-section input {
@@ -19,6 +17,7 @@
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
     border-radius: 25px;
+    outline: none;
 }
 
 .search-section span {
@@ -42,4 +41,11 @@
 .result-section ul {
     color: #282c34;
     list-style-type: none;
+    padding: 0px;
+}
+
+.result-section li {
+    border-top: 1px #dfdfdf dotted;
+    padding: 10px;
+    cursor: pointer;
 }

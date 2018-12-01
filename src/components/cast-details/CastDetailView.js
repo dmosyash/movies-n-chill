@@ -5,7 +5,13 @@ import Col from 'react-bootstrap/lib/Col';
 import { imageBaseUrl } from './../../services/apiService';
 import './../Details.css';
 
-const MovieDetailView = ({ cast }) => {
+/**
+ * @name CastDetailView
+ * @description this is dumb component used to show the Person's data using Grid of Bootstrap.
+ * @param {*} cast : Contains all the details of the person required to show on the page. 
+ */
+
+const CastDetailView = ({ cast }) => {
     return (
         <Grid>
             <Row>
@@ -46,4 +52,4 @@ const MovieDetailView = ({ cast }) => {
     );
 }
 
-export default MovieDetailView;
+export default CastDetailView;

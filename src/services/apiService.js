@@ -1,8 +1,13 @@
+// API_KEY from themoviedb site.
 const API_KEY = "2ad3bd185c74b055ce8740e15c06d03c";
+
+//Base url of APIs of themoviedb.
 const baseUrl = "https://api.themoviedb.org/3/";
 
+//Base url of images of themoviedb.
 export const imageBaseUrl = "http://image.tmdb.org/t/p/";
 
+//function to call any 'get' API 
 const getAPIcall = (apiUrl, params) => {
     params.api_key = API_KEY;
     Object.keys(params).forEach(key => apiUrl.searchParams.append(key, params[key]))

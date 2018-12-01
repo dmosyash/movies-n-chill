@@ -1,6 +1,13 @@
 import React from 'react';
 import Table from 'react-bootstrap/lib/Table';
-import { imageBaseUrl } from './../../services/apiService';
+import { imageBaseUrl } from '../../services/apiService';
+
+/**
+ * @name MoviesOfCast
+ * @description this component shows list of movies in which the person has worked.
+ * @param {*} movieList it contains list of the movies of the person.
+ * @param {function} onClick click event to show the clicked movie's details.
+ */
 
 const renderMovies = (movies, onClick) => {
     return movies.map(v => (
@@ -13,7 +20,7 @@ const renderMovies = (movies, onClick) => {
     ));
 }
 
-const CastInMoviesView = ({ movieList, onClick }) => (
+const MoviesOfCast = ({ movieList, onClick }) => (
     <Table striped bordered condensed hover>
         <thead>
             <tr>
@@ -27,4 +34,4 @@ const CastInMoviesView = ({ movieList, onClick }) => (
     </Table>
 );
 
-export default CastInMoviesView;
+export default MoviesOfCast;

@@ -1,6 +1,12 @@
 import React from 'react';
 import SearchBox from './search-box/SearchBox';
 
+/**
+ * @name Header
+ * @description as name suggest it is Header of the whole App
+ * It has two parts App's Logo and Search box for movies.
+ */
+
 const headerStyle = {
     backgroundColor: '#282c34',
     minHeight: '10vh',
@@ -19,7 +25,7 @@ const searchBoxContainer = {
 
 const Header = props => (
     <header style={headerStyle}>
-        <h2>Movies N Chill</h2>
+        <div onClick={props.goHome} style={{cursor: 'pointer'}}><h2>Movies N Chill</h2></div>
         <div style={searchBoxContainer}><SearchBox goToMovie={props.goToMovie} /></div>
     </header>
 );

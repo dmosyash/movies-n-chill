@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+ * @name Footer
+ * @description It is footer of the whole App
+ * it contains link to this app's github page and my emailId
+ */
+
 const footerStyle = {
     backgroundColor: '#282c34',
     minHeight: '10vh',

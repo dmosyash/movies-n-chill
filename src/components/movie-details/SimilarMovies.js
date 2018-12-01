@@ -4,6 +4,13 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import { imageBaseUrl } from '../../services/apiService';
 
+/**
+ * @name SimilarMovies
+ * @description this dumb component shows similar movies to the selected movie.
+ * @param {*} list it has list of similar movies come as a prop.
+ * @param {function} onClick click event to show details of clicked Movie.
+ */
+
 const renderMovies = (list, onClick) => {
     return list.map(movie => (
         <Col key={movie.id}
@@ -17,10 +24,10 @@ const renderMovies = (list, onClick) => {
     ));
 }
 
-const MovieCastView = ({ list, onClick }) => (
+const SimilarMovies = ({ list, onClick }) => (
     <Grid>
         <Row>{renderMovies(list, onClick)}</Row>
     </Grid>
 );
 
-export default MovieCastView;
+export default SimilarMovies;

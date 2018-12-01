@@ -12,8 +12,10 @@ import MovieCell from '../components/MovieCell';
  * @description Home is a Container which get popular movies from API called in componentDidMount 
  * and changing state so movies will get render.
  * State of this Container is Movie List
- * Grid is used to show the movie list 
+ * Grid is used to show the movie list.
+ * It has pagination too at bottom of the container.
  */
+
 class Home extends Component {
 
     constructor(props) {
@@ -65,7 +67,6 @@ class Home extends Component {
     render() {
         const styleContainer = {
             paddingTop: '50px',
-            backgroundColor: '#dfdfdf'
         }
 
         const previousBtn = {

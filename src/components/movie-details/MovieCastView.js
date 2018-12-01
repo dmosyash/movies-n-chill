@@ -2,6 +2,13 @@ import React from 'react';
 import Table from 'react-bootstrap/lib/Table';
 import { imageBaseUrl } from '../../services/apiService';
 
+/**
+ * @name MovieCastView
+ * @description this component shows list of cast and crew in tabular form.
+ * @param {*} cast it contains list of the cast members of the movie.
+ * @param {function} onClick click event to show the clicked person's details.
+ */
+
 const renderCast = (cast, onClick) => {
     return cast.map(v => (
         <tr onClick={() => onClick(v.id)} key={v.id}>

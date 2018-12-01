@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import ReactDom from 'react-dom';
 import { getCastDetails, getCastMovies } from './../services/apiService';
 import CastDetailView from './../components/cast-details/CastDetailView';
-import CastInMoviesView from './../components/cast-details/CastInMoviesView';
+import MoviesOfCast from '../components/cast-details/MoviesOfCast';
 
 /**
  * @class CastDetails
- * @description CastDetails is a Container which get popular movies from API called in componentDidMount
- * and changing state so movies will get render.
- * State of this Container is Movie List
- * Grid is used to show the movie list 
+ * @description CastDetails is a Container which show detail of the cast from API
+ * called in componentDidMount and changing state so details get render.
+ * It also call API for other movies of the person.
+ * State of this Container is Person's Data, movie list of his/her. 
  */
+
 class CastDetails extends Component {
 
     constructor(props) {
@@ -35,19 +37,17 @@ class CastDetails extends Component {
                     movieList: response.cast
                 });
             });
+            
+        window.scrollTo(0, 0);
     }
 
     goToMovie = id => this.props.history.push(`/movie/${id}`);
 
     render() {
-        const { castData, movieList } = this.state;
-        const styleContainer = {
-            padding: '50px 80px',
-            backgroundColor: '#dfdfdf'
-        }
+        const { castData, movieList } = this.state;        
 
         const container = (
-            <div style={styleContainer}>
+            <div>
                 {
                     this.state.loading ? <h2> Loading... </h2> :
                         (
@@ -55,7 +55,7 @@ class CastDetails extends Component {
                                 <CastDetailView cast={castData} />
                                 <br />
                                 <h4>In Movies</h4>
-                                <CastInMoviesView onClick={this.goToMovie} movieList={movieList} />
+                                <MoviesOfCast onClick={this.goToMovie} movieList={movieList} />
                             </React.Fragment>
                         )
                 }

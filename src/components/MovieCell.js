@@ -8,10 +8,16 @@ import { imageBaseUrl } from '../services/apiService';
  * thumbnail of movie is getting from TMDb server of 185px width 
  */
 
+const style = {
+    height: '380px',
+    textAlign: 'center',
+    cursor: 'pointer'
+}
+
 const MovieCell = ({ onClick, movie }) => (
-    <Col xs={12} md={3} style={{ height: '380px', textAlign: 'center' }} onClick={() => onClick(movie.id)}>
+    <Col xs={12} md={3} style={style} onClick={() => onClick(movie.id)}>
         <img style={{ width: '185px', height: '275px' }}
-            src={`${imageBaseUrl}w185/${movie.poster_path}`}
+            src={`${imageBaseUrl}w185${movie.poster_path}`}
             alt={movie.title}
         />
         <h4>{movie.title}</h4>

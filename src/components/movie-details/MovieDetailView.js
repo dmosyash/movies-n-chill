@@ -5,6 +5,12 @@ import Col from 'react-bootstrap/lib/Col';
 import { imageBaseUrl } from './../../services/apiService';
 import './../Details.css';
 
+/**
+ * @name MovieDetailView
+ * @description this is dumb component used to show the Movie's data using Grid of Bootstrap.
+ * @param {*} movieData : Contains all the details of the movie required to show on the page. 
+ */
+
 const renderMultipleAnswers = (data = []) => {
     return data.map((item, i) => {
         return item.name + (i === data.length - 1 ? '.' : ', ');
