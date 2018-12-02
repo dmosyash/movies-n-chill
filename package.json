@@ -2,7 +2,7 @@
   "name": "movies-n-chill",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://dmosyash.github.io/movies-n-chill",
+  "homepage": "https://dmosyash.github.io/movies-n-chill",
   "dependencies": {
     "react": "^16.6.3",
     "react-bootstrap": "^0.32.4",
