@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './SearchBox.css';
-import { getSearchResults } from '../../services/apiService';
+import { getSearchResults, imageBaseUrl } from '../../services/apiService';
 
 /**
  * @class SearchBox
@@ -31,7 +31,10 @@ class SearchBox extends Component {
         if (!this.state.results || !this.state.results.length) return;
         let resultsToShow = this.state.results.slice(0, 7);
         return resultsToShow.map(result => {
-            return <li onClick={() => this.goToMovie(result.id)} key={result.id}>{result.title}</li>
+            return (<li onClick={() => this.goToMovie(result.id)} key={result.id}>
+                <img width="30" height="45" src={`${imageBaseUrl}w185${result.poster_path}`} alt={result.title} />
+                <span style={{marginLeft: '15px'}}>{result.title}</span>
+            </li>);
         });
     }
 

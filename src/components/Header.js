@@ -25,7 +25,7 @@ const searchBoxContainer = {
 
 const Header = props => (
     <header style={headerStyle}>
-        <div onClick={props.goHome} style={{cursor: 'pointer'}}><h2>Movies N Chill</h2></div>
+        <div onClick={props.goHome} style={{cursor: 'pointer'}}><h2>Movies-n-Chill</h2></div>
         <div style={searchBoxContainer}><SearchBox goToMovie={props.goToMovie} /></div>
     </header>
 );
