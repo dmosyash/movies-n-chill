@@ -1,7 +1,7 @@
 # Movies-n-Chill
 This is a web application for viewing popular movies, about movies and their cast and crew.
 
-[Click here to see the live App](https://dmosyash.github.io/)
+[Click here to see the live App](https://movies-n-chill.netlify.com/)
 
 This application is developed in Reactjs.
 TMDb APIs are used to fetch data.
